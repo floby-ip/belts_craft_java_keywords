@@ -14,8 +14,9 @@ public class MyNativeMethods {
     // --- Main method to test our native library
     public static void main() {
         System.setProperty("java.library.path",MyNativeMethods.class.getClassLoader().getResource("lib/").toString());
+        System.load(MyNativeMethods.class.getClassLoader().getResource("lib/myNativeMethods.dll").getFile());
 
-        System.loadLibrary("myNativeMethods");
+        /*
         MyNativeMethods myNativeMethods = new MyNativeMethods();
 
         System.out.println( 5 + " pumped up is " + myNativeMethods.pumpThoseNumbers(5));
@@ -23,5 +24,6 @@ public class MyNativeMethods {
         System.out.println( "is '" + true + "' false ? " + myNativeMethods.isMyParamFalse(true));
         System.out.println( "is '" + false + "' false ? " + myNativeMethods.isMyParamFalse(false));
         System.out.println( "What's my name ? " + myNativeMethods.sayMyName("Florent"));
+        */
     }
 }
