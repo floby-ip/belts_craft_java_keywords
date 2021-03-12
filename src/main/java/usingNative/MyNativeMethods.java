@@ -6,24 +6,24 @@ package usingNative;
 public class MyNativeMethods {
 
     // --- Native methods
-    public native int pumpThoseNumbers(int n);
-    public native boolean isMyParamFalse(boolean bool);
-    public native String sayMyName(String text);
+    public static native int pumpThoseNumbers(int n);
+    public static native boolean isMyParamFalse(boolean bool);
+    public static native String sayMyName(String text);
 
 
     // --- Main method to test our native library
     public static void main() {
         System.setProperty("java.library.path",MyNativeMethods.class.getClassLoader().getResource("lib/").toString());
-        System.load(MyNativeMethods.class.getClassLoader().getResource("lib/myNativeMethods.dll").getFile());
+        System.load(MyNativeMethods.class.getClassLoader().getResource("lib/libnative.so").getFile());
 
-        /*
-        MyNativeMethods myNativeMethods = new MyNativeMethods();
-
-        System.out.println( 5 + " pumped up is " + myNativeMethods.pumpThoseNumbers(5));
-        System.out.println( 2 + " pumped up is " + myNativeMethods.pumpThoseNumbers(2));
-        System.out.println( "is '" + true + "' false ? " + myNativeMethods.isMyParamFalse(true));
-        System.out.println( "is '" + false + "' false ? " + myNativeMethods.isMyParamFalse(false));
-        System.out.println( "What's my name ? " + myNativeMethods.sayMyName("Florent"));
-        */
+        try {
+            System.out.println(5 + " pumped up is " + pumpThoseNumbers(5));
+            System.out.println(2 + " pumped up is " + pumpThoseNumbers(2));
+            System.out.println("is '" + true + "' false ? " + isMyParamFalse(true));
+            System.out.println("is '" + false + "' false ? " + isMyParamFalse(false));
+            System.out.println("What's my name ? " + sayMyName("Florent"));
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }
